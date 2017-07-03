@@ -1,34 +1,50 @@
-var path = require('path')
-var webpack = require('webpack')
+var path = require('path');
+var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
+var precss = require('precss');
 
 module.exports = {
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     entry: [
-        './src/app.js'
+        'webpack-hot-middleware/client',
+        'babel-polyfill',
+        './src/index'
     ],
     output: {
-        path: path.join(__dirname, 'build'),
+        path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
         publicPath: '/static/'
     },
-    devServer: {
-        historyApiFallback: true,
-        proxy: [{
-            path: '/api/*',
-            target: 'http://localhost:3001'
-        }]
-    },
     module: {
-        loaders: [
-            {
-                test: /\.jsx?/,
-                loaders: ['babel'],
-                include: path.join(__dirname, 'src')
-            },
+        rules: [
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" }
+                ]
+            },
+            {
+                test: /\.js$/,
+                include: [
+                    path.resolve(__dirname, 'src')
+                ],
+                use: [
+                    {
+                        loader: 'react-hot-loader',
+                        options: {
+                            plugins: ['transform-runtime']
+                        }
+                    },
+                    {
+                        loader: 'babel-loader'
+                    }
+                ]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin()
+    ]
 }
