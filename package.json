@@ -1,48 +1,33 @@
 {
-  "name": "React(learnJS)",
+  "name": "ReactLearnJS",
   "version": "1.0.0",
-  "description": "Course React(learnJS)",
-  "main": "index.js",
+  "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "webpack-dev-server --hot --history-api-fallback --open"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Strandol/React-LearnJS.git"
   },
-  "author": "dvalian",
-  "license": "ISC",
+  "keywords": [],
+  "author": "Dvalian",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Strandol/React-LearnJS/issues"
   },
   "homepage": "https://github.com/Strandol/React-LearnJS#readme",
   "dependencies": {
-    "babel-polyfill": "^6.23.0",
-    "babel-runtime": "^6.23.0",
-    "express": "^4.15.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-redux": "^5.0.4",
-    "redux": "^3.6.0"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "autoprefixer": "7.0.1",
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
-    "babel-plugin-transform-runtime": "6.23.0",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-runtime": "6.23.0",
-    "css-loader": "0.28.1",
-    "npm-install-webpack-plugin": "^4.0.4",
-    "postcss-loader": "2.0.5",
-    "precss": "1.4.0",
-    "react-hot-loader": "1.3.1",
-    "style-loader": "0.17.0",
-    "webpack": "^2.5.1",
-    "webpack-dev-middleware": "^1.10.2",
-    "webpack-hot-middleware": "^2.18.0"
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
   }
 }
