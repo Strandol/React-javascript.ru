@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import CommentList from '../CommentList'
+import './index.css'
 
 export default class Article extends Component {    
     render() {
@@ -8,9 +10,10 @@ export default class Article extends Component {
                   : null
         
         return (
-            <div>
+            <div className={'article'}>
                 <h1 onClick={articleOpen}>{article.title}</h1>
                 {body}
+                <CommentList comments = { article.comments }/> 
             </div>
         )  
     }
