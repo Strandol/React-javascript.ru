@@ -1,5 +1,5 @@
 import { articles, normalizedComments } from '../content/fixtures';
-import ArticleList from './ArticleList';
+import ArticleList from './ArticleList/index';
 import React, { Component } from 'react';
 
 export default class App extends Component {
