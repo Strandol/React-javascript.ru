@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
+import _ from 'lodash'
 import Article from './Article';
 import CommentList from './CommentList';
-import _ from 'lodash'
+import articleOpen from '../decorators/oneOpen'
 
-export default class ArticleList extends Component {
+class ArticleList extends Component {
     render() {      
         if (!this.props.articles) {
             return (
                 <div>There is no articles...</div>
             )
         }
+        
         let listItems = this.props.articles.map((article) => {          
             return (
                 <li key={article.id}>
-                    <h1>HeLLO</h1>
-                    <Article article = {article}/>
+                    <Article 
+                        article = {article} 
+                        articleOpen = {this.props.oneOpen(article.id)}
+                        openedArticleId = {this.props.openedItemId}
+                    />
                     <CommentList comments = { article.comments }/> 
                 </li>
             )
@@ -25,3 +30,5 @@ export default class ArticleList extends Component {
         )
     } 
 }
+
+export default articleOpen(ArticleList)

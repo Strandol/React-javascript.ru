@@ -1,30 +1,17 @@
 import React, { Component } from 'react'
 
-export default class Article extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isOpen: false
-        }
-    }
-    
-    setOpen(ev) {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
-    
+export default class Article extends Component {    
     render() {
-        console.log(this.props);
-        const { article: { title, text } } = this.props;
-        const body = this.state.isOpen ? <section>{text}</section> : null;
+        const { article, articleOpen, openedArticleId} = this.props;
+        const body = article.id === openedArticleId
+                  ? <section>{article.text}</section>
+                  : null
         
         return (
             <div>
-                <h1 onClick={this.setOpen.bind(this)}>{title}</h1>
+                <h1 onClick={articleOpen}>{article.title}</h1>
                 {body}
             </div>
         )  
     }
-
 }
