@@ -52,7 +52,9 @@ class ArticleList extends Component {
     }
     
     isArticleEqaulToSelected(article) {
-        return !_.find(this.selectedArticles, { label: article.title });
+        return this.selectedArticles.length ?
+            _.find(this.selectedArticles, { label: article.title })
+            : true;
     }
 }
 
