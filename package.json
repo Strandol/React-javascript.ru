@@ -18,9 +18,12 @@
   "homepage": "https://github.com/Strandol/React-LearnJS#readme",
   "dependencies": {
     "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.6.0",
     "react-day-picker": "^6.0.5",
     "react-dom": "^15.4.2",
-    "react-select": "^1.0.0-rc.5"
+    "react-redux": "^5.0.5",
+    "react-select": "^1.0.0-rc.5",
+    "redux": "^3.7.1"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
