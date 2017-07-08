@@ -46,7 +46,7 @@ class Filters extends Component {
                     You selected from: {this.getBeatyDate(from)} to: {this.getBeatyDate(to)}
                 </h2>
                 <Select
-                    options = {options}
+                    options = {options.toJS()}
                     value = {this.props.selectedArticles}
                     multi = {true}
                     onChange = {this.handleSelectChange.bind(this)}
@@ -64,9 +64,10 @@ class Filters extends Component {
 
 export default connect((state) => {
     const { articles: { selectedArticles, articles }} = state;
+    
     return {
         day: state.filters.day,
-        articles,
+        articles: articles.valueSeq(),
         selectedArticles
     }
 }, {

@@ -60,7 +60,7 @@ class ArticleList extends Component {
 
 export default connect((state) => {
     return {
-        articles: state.articles.articles,
+        articles: state.articles.articles.toArray(),
         selectedArticles: state.articles.selectedArticles,
         day: state.filters.day
     }

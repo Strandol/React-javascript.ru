@@ -1,8 +1,19 @@
 import * as actions from '../constants'
-import { articles } from '../content/fixtures'
+import { normalizedArticles } from '../content/fixtures'
+import { OrderedMap, Record } from 'immutable'
 
-let initialState = {
-    articles,
+const Article = Record({
+    'id': '',
+    'date': '',
+    'title': '',
+    'text': '',
+    'comments': []
+})
+
+const initialState = {
+    articles: normalizedArticles.reduce((acc, item) => {
+        return acc.set(item.id, new Article(item))
+    }, new OrderedMap({})),
     selectedArticles: []
 }
 
