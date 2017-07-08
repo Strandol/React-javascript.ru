@@ -1,7 +1,7 @@
 import * as actions from '../constants'
 import { Record, OrderedMap, Map, List } from 'immutable'
-import { recordsFromArray } from './utils'
 import { normalizedArticles } from '../content/fixtures'
+import { recordsFromArray } from './utils'
 import _ from 'lodash'
 
 const Article = Record({
@@ -58,7 +58,7 @@ export default function(state = initialState, action) {
                 articles: state.articles
                     .set('loading', false)
                     .set('entities', recordsFromArray(Article, action.data.map((article) => {
-                          let text = _.find(normalizedArticles, { 'id': article.id }).text
+                          let text = _.find(normalizedArticles, {"id": article.id}).text                        
                           article.text = text;
                           return article;
                     })))

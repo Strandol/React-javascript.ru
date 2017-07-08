@@ -6,7 +6,12 @@ import AddComment from './AddComment'
 
 class CommentList extends Component {  
     render() {              
-        let {commentObjects, isOpen, onClickHandler} = this.props;
+        let {loading, commentObjects, isOpen, onClickHandler} = this.props;
+        
+        if (loading) {
+            return <h4>Loading...</h4>
+        }
+        
         commentObjects = commentObjects.map((comment) => {
             return ( comment ? <Comment key={comment.id} content={comment}/> : null)
         })
@@ -15,7 +20,7 @@ class CommentList extends Component {
             <div>
                 <a onClick={onClickHandler}>{isOpen ? 'Close comments' : 'Open comments'}</a>
                 {isOpen ? (commentObjects.length ? commentObjects : <p>There is no comments...</p>) : null}
-                {isOpen ? <AddComment articleId = {this.props.articleId}/> : null}
+                {isOpen ? <AddComment isOpen = {isOpen} articleId = {this.props.articleId}/> : null}
             </div>
         )
     }
@@ -23,6 +28,7 @@ class CommentList extends Component {
 
 export default connect((state, { comments }) => {
     return {
+        loading: state.comments.get('loading'),
         commentObjects: comments.map(id => state.comments.get(id))
     }
 })(toggleOpen(CommentList))

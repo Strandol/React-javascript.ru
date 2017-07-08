@@ -7,6 +7,13 @@ export function loadAllArticles() {
     }
 }
 
+export function loadAllComments(id) {
+    return {
+        type: constants.LOAD_ALL_COMMENTS,
+        callAPI: '/api/comment?article=' + id
+    }
+}
+
 export function selectArticles(selectedArticles) {
     return {
         type: constants.SELECT_ARTICLES,
