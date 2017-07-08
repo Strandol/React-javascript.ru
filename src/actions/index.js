@@ -14,6 +14,15 @@ export function deleteArticle(id) {
     }
 }
 
+export function addComment(articleId, content) {
+    return {
+        type: constants.ADD_COMMENT,
+        articleId,
+        content,
+        id: null
+    }
+}
+
 export function setDayRange(range) {
     return {
         type: constants.SET_DAY_RANGE,

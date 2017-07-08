@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 
 import Article from '../components/Article/';
-import CommentList from '../components/CommentList';
 import articleOpen from '../decorators/oneOpen'
 
 import { deleteArticle } from '../actions'
@@ -52,13 +51,15 @@ class ArticleList extends Component {
     }
     
     isArticleEqaulToSelected(article) {
-        return !_.find(this.selectedArticles, { label: article.title });
+        return this.selectedArticles.length ?
+            _.find(this.selectedArticles, { label: article.title })
+            : true;
     }
 }
 
 export default connect((state) => {
     return {
-        articles: state.articles.articles,
+        articles: state.articles.articles.toArray(),
         selectedArticles: state.articles.selectedArticles,
         day: state.filters.day
     }

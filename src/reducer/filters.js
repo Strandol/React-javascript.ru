@@ -16,7 +16,7 @@ export default function(days = {day: {from: null, to: null}}, action) {
           })
           break;
       default:
-          return Object.assign({}, days);
+          return days;
           break;
     }
 }
