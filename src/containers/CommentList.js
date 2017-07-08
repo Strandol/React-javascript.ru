@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Comment from '../components/Comment'
 import toggleOpen from '../decorators/toggleOpen'
 import { connect } from 'react-redux'
+import AddComment from './AddComment'
 
 class CommentList extends Component {  
     render() {              
@@ -14,6 +15,7 @@ class CommentList extends Component {
             <div>
                 <a onClick={onClickHandler}>{isOpen ? 'Close comments' : 'Open comments'}</a>
                 {isOpen ? (commentObjects.length ? commentObjects : <p>There is no comments...</p>) : null}
+                {isOpen ? <AddComment articleId = {this.props.articleId}/> : null}
             </div>
         )
     }

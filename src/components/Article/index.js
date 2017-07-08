@@ -20,7 +20,7 @@ export default class Article extends Component {
                     {body}
                 </CSSTransitionGroup>
                 <button onClick={this.handleDeleteClick.bind(this)}>Delete article</button>
-                <CommentList comments = { article.comments }/> 
+                <CommentList articleId = { article.id } comments = { article.comments }/>
             </div>
         )  
     }

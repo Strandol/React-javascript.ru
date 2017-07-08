@@ -13,7 +13,14 @@ const defaultComments = recordsFromArray(Comment, normalizedComments);
 
 export default function (comments = defaultComments, action) {
     switch (action.type) {
-        default:
-        return comments
+        case actions.ADD_COMMENT:
+            return comments.set(action.id, {
+                id: action.id,
+                user: action.content.user,
+                text: action.content.text
+            })
+            break;
+            default:
+            return comments
     }
 }

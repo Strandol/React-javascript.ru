@@ -18,18 +18,25 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
-      case actions.DELETE_ARTICLE:
-          return Object.assign({}, state, {
-              articles: state.articles.delete(action.id)
-          })
-          break;
-      case actions.SELECT_ARTICLES:
-          return Object.assign({}, state, {
-              selectedArticles: action.selectedArticles
-          })
-          break;
-      default:
-          return Object.assign({}, state);
-          break;
+        case actions.DELETE_ARTICLE:
+            return Object.assign({}, state, {
+                articles: state.articles.delete(action.id)
+            })
+            break;
+        case actions.SELECT_ARTICLES:
+            return Object.assign({}, state, {
+                selectedArticles: action.selectedArticles
+            })
+            break;
+        case actions.ADD_COMMENT:
+            return Object.assign({}, state, {
+                articles: state.articles.updateIn([action.articleId, 'comments'], list => {
+                    return [].concat(list, action.id)
+                })
+            });
+            break;
+        default:
+            return state;
+            break;
     }
 }
