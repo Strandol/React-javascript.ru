@@ -1,5 +1,19 @@
 import * as constants from '../constants'
 
+export function loadAllArticles() {
+    return {
+        type: constants.LOAD_ALL_ARTICLES,
+        callAPI: '/api/article'
+    }
+}
+
+export function loadAllComments(id) {
+    return {
+        type: constants.LOAD_ALL_COMMENTS,
+        callAPI: '/api/comment?article=' + id
+    }
+}
+
 export function selectArticles(selectedArticles) {
     return {
         type: constants.SELECT_ARTICLES,
@@ -19,7 +33,8 @@ export function addComment(articleId, content) {
         type: constants.ADD_COMMENT,
         articleId,
         content,
-        id: null
+        id: null,
+        withRandomId: true
     }
 }
 

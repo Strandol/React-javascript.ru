@@ -1,5 +1,4 @@
 import * as actions from '../constants'
-import { normalizedComments } from '../content/fixtures'
 import { Record } from 'immutable'
 import { recordsFromArray } from './utils'
 
@@ -9,18 +8,25 @@ const Comment = Record({
     'text': ''
 })
 
-const defaultComments = recordsFromArray(Comment, normalizedComments);
+const initialState = recordsFromArray(Comment, [])
 
-export default function (comments = defaultComments, action) {
+export default function (state = initialState, action) {
     switch (action.type) {
         case actions.ADD_COMMENT:
-            return comments.set(action.id, {
+            return state.set(action.id, {
                 id: action.id,
                 user: action.content.user,
                 text: action.content.text
             })
             break;
+        case actions.LOAD_ALL_COMMENTS + actions.FAIL:
+            console.error(action.err);
+            return state;
+            break;
+        case actions.LOAD_ALL_COMMENTS + actions.SUCCESS:
+            return recordsFromArray(Comment, action.data)
+            break;
             default:
-            return comments
+            return state
     }
 }

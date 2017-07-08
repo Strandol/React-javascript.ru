@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addComment } from '../actions'
+import { loadAllComments } from '../actions'
 
 class AddComment extends Component {
+    componentDidMount() {
+        if (this.props.isOpen)
+          this.props.loadAllComments(this.props.articleId);
+    }
+    
     render() {
         return(
             <form onSubmit={this.handleAddComment.bind(this)}>
@@ -24,5 +30,6 @@ class AddComment extends Component {
 }
 
 export default connect(null, {
-    addComment
+    addComment,
+    loadAllComments
 })(AddComment)

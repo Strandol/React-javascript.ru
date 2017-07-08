@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Select from 'react-select'
 import DayPicker, { DateUtils } from 'react-day-picker'
+import { OrderedMap } from 'immutable'
 
 import 'react-day-picker/lib/style.css'
 import 'react-select/dist/react-select.css'
@@ -64,10 +65,9 @@ class Filters extends Component {
 
 export default connect((state) => {
     const { articles: { selectedArticles, articles }} = state;
-    
     return {
         day: state.filters.day,
-        articles: articles.valueSeq(),
+        articles: articles.get('entities').valueSeq(),
         selectedArticles
     }
 }, {

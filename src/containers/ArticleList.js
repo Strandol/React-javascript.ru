@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import { loadAllArticles } from '../actions'
 
 import Article from '../components/Article/';
 import articleOpen from '../decorators/oneOpen'
 
 import { deleteArticle } from '../actions'
 
-class ArticleList extends Component {  
-    render() {      
+class ArticleList extends Component {
+    componentDidMount() {
+        this.props.loadAllArticles();
+    }
+    
+    render() {
+        if (this.props.loading) {
+            return (<h2>'Loading...'</h2>)
+        }
+        
         if (!this.props.articles) {
             return (
                 <div>There is no articles...</div>
@@ -59,10 +68,12 @@ class ArticleList extends Component {
 
 export default connect((state) => {
     return {
-        articles: state.articles.articles.toArray(),
+        loading: state.articles.articles.get('loading'),
+        articles: state.articles.articles.get('entities').toArray(),
         selectedArticles: state.articles.selectedArticles,
         day: state.filters.day
     }
 }, {
-    deleteArticle
+    deleteArticle,
+    loadAllArticles
 })(articleOpen(ArticleList))
