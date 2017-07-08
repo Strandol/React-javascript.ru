@@ -19,7 +19,8 @@ export function addComment(articleId, content) {
         type: constants.ADD_COMMENT,
         articleId,
         content,
-        id: null
+        id: null,
+        withRandomId: true
     }
 }
 

@@ -1,13 +1,10 @@
 import { ADD_COMMENT } from '../constants'
 
 export default store => next => action => {
-    switch (action.type) {
-        case ADD_COMMENT:
-            action.id = getRandomId();
-            break;
-        default:
-            break;
+    if (action.withRandomId) {
+        action.id = getRandomId();
     }
+
     next(action);
 }
 
