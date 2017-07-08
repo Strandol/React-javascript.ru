@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 
 import Article from '../components/Article/';
-import CommentList from '../components/CommentList';
 import articleOpen from '../decorators/oneOpen'
 
 import { deleteArticle } from '../actions'

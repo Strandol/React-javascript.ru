@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CommentList from '../CommentList'
+import CommentList from '../../containers/CommentList'
 import CSSTransitionGroup from 'react-addons-css-transition-group'
 import './index.css'
 

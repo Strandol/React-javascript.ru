@@ -1,6 +1,7 @@
 import * as actions from '../constants'
 import { normalizedArticles } from '../content/fixtures'
-import { OrderedMap, Record } from 'immutable'
+import { Record } from 'immutable'
+import { recordsFromArray } from './utils'
 
 const Article = Record({
     'id': '',
@@ -11,9 +12,7 @@ const Article = Record({
 })
 
 const initialState = {
-    articles: normalizedArticles.reduce((acc, item) => {
-        return acc.set(item.id, new Article(item))
-    }, new OrderedMap({})),
+    articles: recordsFromArray(Article, normalizedArticles),
     selectedArticles: []
 }
 
@@ -21,9 +20,7 @@ export default function(state = initialState, action) {
     switch (action.type) {
       case actions.DELETE_ARTICLE:
           return Object.assign({}, state, {
-              articles: state.articles.filter((article) => {
-                  return article.id != action.id
-              })
+              articles: state.articles.delete(action.id)
           })
           break;
       case actions.SELECT_ARTICLES:
