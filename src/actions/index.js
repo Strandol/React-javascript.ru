@@ -1,5 +1,12 @@
 import * as constants from '../constants'
 
+export function loadAllArticles() {
+    return {
+        type: constants.LOAD_ALL_ARTICLES,
+        callAPI: '/api/article'
+    }
+}
+
 export function selectArticles(selectedArticles) {
     return {
         type: constants.SELECT_ARTICLES,

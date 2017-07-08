@@ -1,6 +1,6 @@
 import * as actions from '../constants'
 import { normalizedComments } from '../content/fixtures'
-import { Record } from 'immutable'
+import { Record, OrderedMap } from 'immutable'
 import { recordsFromArray } from './utils'
 
 const Comment = Record({

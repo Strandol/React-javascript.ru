@@ -1,7 +1,8 @@
 import * as actions from '../constants'
-import { normalizedArticles } from '../content/fixtures'
-import { Record } from 'immutable'
+import { Record, OrderedMap, Map, List } from 'immutable'
 import { recordsFromArray } from './utils'
+import { normalizedArticles } from '../content/fixtures'
+import _ from 'lodash'
 
 const Article = Record({
     'id': '',
@@ -11,16 +12,24 @@ const Article = Record({
     'comments': []
 })
 
+const defaultArticles = recordsFromArray(Article, []);
+
 const initialState = {
-    articles: recordsFromArray(Article, normalizedArticles),
+    articles: new Map({
+        loading: false,
+        loaded: false,
+        errors: new List([]),
+        entities: defaultArticles
+    }),
     selectedArticles: []
 }
 
 export default function(state = initialState, action) {
     switch (action.type) {
         case actions.DELETE_ARTICLE:
+            let newSet = state.articles.deleteIn(["entities", action.id]);
             return Object.assign({}, state, {
-                articles: state.articles.delete(action.id)
+                articles: newSet
             })
             break;
         case actions.SELECT_ARTICLES:
@@ -30,10 +39,30 @@ export default function(state = initialState, action) {
             break;
         case actions.ADD_COMMENT:
             return Object.assign({}, state, {
-                articles: state.articles.updateIn([action.articleId, 'comments'], list => {
+                articles: state.articles.updateIn(['entities', action.articleId, 'comments'], list => {
                     return [].concat(list, action.id)
                 })
             });
+            break;
+        case actions.LOAD_ALL_ARTICLES + actions.FAIL:
+            console.error(action.err);
+            return state;
+            break;
+        case actions.LOAD_ALL_ARTICLES + actions.START:
+            return Object.assign({}, state, {
+                articles: state.articles.set('loading', true)
+            });
+            break;
+        case actions.LOAD_ALL_ARTICLES + actions.SUCCESS:
+            return Object.assign({}, state, {
+                articles: state.articles
+                    .set('loading', false)
+                    .set('entities', recordsFromArray(Article, action.data.map((article) => {
+                          let text = _.find(normalizedArticles, { 'id': article.id }).text
+                          article.text = text;
+                          return article;
+                    })))
+            })
             break;
         default:
             return state;

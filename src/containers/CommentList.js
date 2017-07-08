@@ -8,7 +8,7 @@ class CommentList extends Component {
     render() {              
         let {commentObjects, isOpen, onClickHandler} = this.props;
         commentObjects = commentObjects.map((comment) => {
-            return ( <Comment key={comment.id} content={comment}/> )
+            return ( comment ? <Comment key={comment.id} content={comment}/> : null)
         })
             
         return(
