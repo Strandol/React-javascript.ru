@@ -14,6 +14,12 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js'
   },
+  devServer: {
+      proxy: [{
+          path: '/api/*',
+          target: 'http://localhost:3001'
+      }]
+  },
   module: {
     rules: [
       { 
