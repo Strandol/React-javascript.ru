@@ -8,10 +8,6 @@ class CommentList extends Component {
     render() {              
         let {loading, commentObjects, isOpen, onClickHandler} = this.props;
         
-        if (loading) {
-            return <h4>Loading...</h4>
-        }
-        
         commentObjects = commentObjects.map((comment) => {
             return ( comment ? <Comment key={comment.id} content={comment}/> : null)
         })
@@ -28,7 +24,6 @@ class CommentList extends Component {
 
 export default connect((state, { comments }) => {
     return {
-        loading: state.comments.get('loading'),
         commentObjects: comments.map(id => state.comments.get(id))
     }
 })(toggleOpen(CommentList))
