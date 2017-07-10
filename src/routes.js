@@ -7,7 +7,7 @@ import Filters from './containers/Filters'
 import Article from './components/Article'
 
 export default (
-    <Router history = {hashHistory}>
+    <Router history = {browserHistory}>
         <Route path="/" component = {App}>
              <Route path="articles" component = {ArticleList}>
                   <Route path=":id" component = {ArticleContainer} />

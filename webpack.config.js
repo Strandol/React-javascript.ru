@@ -15,6 +15,7 @@ module.exports = {
       filename: '[name].js'
   },
   devServer: {
+      historyApiFallback: true,
       proxy: [{
           path: '/api/*',
           target: 'http://localhost:3001'
