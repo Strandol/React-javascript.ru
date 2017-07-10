@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { loadAllArticles } from '../actions'
-
 import Article from '../components/Article/';
 import articleOpen from '../decorators/oneOpen'
-
 import { deleteArticle } from '../actions'
+import ArticlesLinks from '../components/ArticleList'
 
 class ArticleList extends Component {
     componentDidMount() {
-        this.props.loadAllArticles();
+        const { loadAllArticles, loading, loaded } = this.props;
+        if (!loaded && !loading) loadAllArticles()
     }
     
     render() {
@@ -31,20 +32,12 @@ class ArticleList extends Component {
             })
         }
         
-        listItems = _.map(listItems, (article) => {          
-            return (
-                <div key={article.id}>
-                    <Article 
-                        article = {article} 
-                        articleOpen = {this.props.oneOpen(article.id)}
-                        openedArticleId = {this.props.openedItemId}
-                        deleteArticle = {this.props.deleteArticle}
-                    />
-                </div>
-            )
-        })
-
-        return <div><ul>{listItems}</ul></div>
+        return (
+            <div> 
+                <ArticlesLinks articles = {listItems}/> 
+                {this.props.children}
+            </div>
+        )
     }
     
     isArticleCreatedInRangeOfDates(article, date) {
@@ -68,6 +61,7 @@ class ArticleList extends Component {
 
 export default connect((state) => {
     return {
+        loaded: state.articles.articles.get('loaded'),
         loading: state.articles.articles.get('loading'),
         articles: state.articles.articles.get('entities').toArray(),
         selectedArticles: state.articles.selectedArticles,

@@ -57,6 +57,7 @@ export default function(state = initialState, action) {
             return Object.assign({}, state, {
                 articles: state.articles
                     .set('loading', false)
+                    .set('loaded', true)
                     .set('entities', recordsFromArray(Article, action.data.map((article) => {
                           let text = _.find(normalizedArticles, {"id": article.id}).text                        
                           article.text = text;
