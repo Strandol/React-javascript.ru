@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CommentList from '../../containers/CommentList'
 import CSSTransitionGroup from 'react-addons-css-transition-group'
+import { Link } from 'react-router'
 import './index.css'
 
 export default class Article extends Component {    
@@ -21,6 +22,8 @@ export default class Article extends Component {
                 </CSSTransitionGroup>
                 <button onClick={this.handleDeleteClick.bind(this)}>Delete article</button>
                 <CommentList articleId = { article.id } comments = { article.comments }/>
+                <Link to={`/articles/${article.id}/comments`}>Open comments</Link>
+                {this.props.children}
             </div>
         )  
     }

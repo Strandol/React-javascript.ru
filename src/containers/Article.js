@@ -2,12 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Article from '../components/Article'
 import { deleteArticle } from '../actions'
+import articleOpen from '../decorators/oneOpen'
 
 class ArticleContainer extends Component {    
     render() {
         return (
             <div>
-                <Article deleteArticle = {this.props.deleteArticle} article = {this.props.article} isOpen = {true}/>
+                <Article
+                    articleOpen = {this.props.oneOpen(this.props.article.id)}
+                    openedArticleId = {this.props.openedItemId}
+                    deleteArticle = {this.props.deleteArticle}
+                    article = {this.props.article}
+                    isOpen = {true}
+                />
             </div>
         )
     }
@@ -19,4 +26,4 @@ export default connect((state, props) => {
     }
 }, {
     deleteArticle
-})(ArticleContainer)
+})(articleOpen(ArticleContainer))

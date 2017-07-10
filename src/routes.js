@@ -5,12 +5,16 @@ import ArticleList from './containers/ArticleList'
 import ArticleContainer from './RouteHandlers/Article'
 import Filters from './containers/Filters'
 import Article from './components/Article'
+import CommentList from './containers/CommentList'
+import Comment from './components/Comment'
 
 export default (
     <Router history = {browserHistory}>
         <Route path="/" component = {App}>
              <Route path="articles" component = {ArticleList}>
-                  <Route path=":id" component = {ArticleContainer} />
+                 <Route path=":id" component = {ArticleContainer}>
+                     <Route path="comments" component = {CommentList} />
+                 </Route>
              </Route>
              <Route path="filters" component = {Filters} />
         </Route>

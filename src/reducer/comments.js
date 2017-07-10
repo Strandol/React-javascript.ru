@@ -14,7 +14,7 @@ const initialState = recordsFromArray(Comment, [])
 export default function (state = initialState, action) {
     switch (action.type) {
         case actions.ADD_COMMENT:
-            return state.comments.set(action.id, {
+            return state.set(action.id, {
                 id: action.id,
                 user: action.content.user,
                 text: action.content.text

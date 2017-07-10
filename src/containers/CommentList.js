@@ -11,7 +11,7 @@ class CommentList extends Component {
         commentObjects = commentObjects.map((comment) => {
             return ( comment ? <Comment key={comment.id} content={comment}/> : null)
         })
-            
+          
         return(
             <div>
                 <a onClick={onClickHandler}>{isOpen ? 'Close comments' : 'Open comments'}</a>
