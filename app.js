@@ -45494,7 +45494,7 @@ var _default = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     { history: __WEBPACK_IMPORTED_MODULE_1_react_router__["browserHistory"] },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_1_react_router__["Route"],
-        { path: '/React-LearnJS/', component: __WEBPACK_IMPORTED_MODULE_2__containers_App__["a" /* default */] },
+        { path: '/React-LearnJS', component: __WEBPACK_IMPORTED_MODULE_2__containers_App__["a" /* default */] },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_router__["Route"],
             { path: 'articles', component: __WEBPACK_IMPORTED_MODULE_3__containers_ArticleList__["a" /* default */] },
