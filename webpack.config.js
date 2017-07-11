@@ -11,15 +11,8 @@ module.exports = {
     ]
   },
   output: {
-      path: path.resolve(__dirname, './dist'),
-      filename: '[name].js'
-  },
-  devServer: {
-      historyApiFallback: true,
-      proxy: [{
-          path: '/api/*',
-          target: 'http://localhost:3001'
-      }]
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].js'
   },
   module: {
     rules: [
