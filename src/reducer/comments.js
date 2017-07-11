@@ -1,5 +1,5 @@
 import * as actions from '../constants'
-import { Record } from 'immutable'
+import { Record, Map } from 'immutable'
 import { recordsFromArray } from './utils'
 
 const Comment = Record({
@@ -9,6 +9,7 @@ const Comment = Record({
 })
 
 const initialState = recordsFromArray(Comment, [])
+  
 
 export default function (state = initialState, action) {
     switch (action.type) {
@@ -26,7 +27,7 @@ export default function (state = initialState, action) {
         case actions.LOAD_ALL_COMMENTS + actions.SUCCESS:
             return recordsFromArray(Comment, action.data)
             break;
-            default:
+        default:
             return state
     }
 }
