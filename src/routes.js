@@ -12,9 +12,7 @@ export default (
     <Router history = {browserHistory}>
         <Route path="/" component = {App}>
              <Route path="articles" component = {ArticleList}>
-                 <Route path=":id" component = {ArticleContainer}>
-                     <Route path="comments" component = {CommentList} />
-                 </Route>
+                 <Route path=":id" component = {ArticleContainer} />
              </Route>
              <Route path="filters" component = {Filters} />
         </Route>
